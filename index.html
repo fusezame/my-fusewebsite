@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 เซอร์ไพรส์สำหรับเธอ 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffccdc;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 20vh;
+        }
+        h1 {
+            color: #d63384;
+        }
+        .btn {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #e6005c;
+        }
+        .message {
+            display: none;
+            font-size: 24px;
+            color: #ff4081;
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: float 2s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .music-controls {
+            margin-top: 20px;
+        }
+        .gif-container {
+            display: none; /* ซ่อน GIF โดยเริ่มต้น */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="loveSong" loop>
+        <source src="เพลงรัก.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <h1>💖 Happy Valentine Day Nakub Bowie 💖</h1>
+        <button class="btn" onclick="showMessage()">กดที่นี่สิ!</button>
+        <div class="message" id="message">รักเธอที่สุดเลยนะ ❤️</div>
+    </div>
+
+    <!-- ซ่อน GIF โดยเริ่มต้น -->
+    <div class="gif-container" id="gifContainer">
+        <img src="GIFBOW.gif" alt="Valentine's Day Gif" width="300px">
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            
+            // แสดง GIF เมื่อคลิกปุ่ม
+            document.getElementById("gifContainer").style.display = "block";
+
+            // Play music when button is clicked
+            var audio = document.getElementById("loveSong");
+            audio.play();
+
+            // เริ่มให้หัวใจลอยขึ้นเมื่อคลิก
+            createFloatingHearts();
+        }
+
+        // ฟังก์ชันสร้างหัวใจที่ลอยขึ้น
+        function createFloatingHearts() {
+            for (let i = 0; i < 500; i++) { // สร้างหัวใจ 10 ดวง
+                setTimeout(() => {
+                    let heart = document.createElement("div");
+                    heart.innerHTML = "❤️";
+                    heart.classList.add("heart");
+                    heart.style.left = Math.random() * 100 + "vw"; // สุ่มตำแหน่งแนวนอน
+                    heart.style.top = "80vh"; // วางที่ตำแหน่งแนวตั้ง
+
+                    document.body.appendChild(heart);
+
+                    // ลบหัวใจหลังจากมันลอยขึ้น
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2000);
+                }, i * 300); // สร้างหัวใจทีละดวงทุกๆ 300ms
+            }
+        }
+    </script>
+
+</body>
+</html>
